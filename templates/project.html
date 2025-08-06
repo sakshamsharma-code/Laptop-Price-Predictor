@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project | Laptop Price Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f0f8ff;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .form-card {
+            padding: 2rem;
+            border-radius: 1rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div class="form-card">
+            <h2 class="text-center mb-4">💻 Laptop Price Prediction</h2>
+            <form action="{{ url_for('predict') }}" method="POST">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Brand</label>
+                        <select name="brand" class="form-select" required>
+                            <option disabled selected>Select Brand</option>
+                            <option value="ASUS">ASUS</option>
+                            <option value="Lenovo">Lenovo</option>
+                            <option value="acer">acer</option>
+                            <option value="Avita">Avita</option>
+                            <option value="HP">HP</option>
+                            <option value="DELL">DELL</option>
+                            <option value="MSI">MSI</option>
+                            <option value="APPLE">APPLE</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Processor Brand</label>
+                        <select name="processor_brand" class="form-select" required>
+                            <option disabled selected>Select Processor Brand</option>
+                            <option value="Intel">Intel</option>
+                            <option value="AMD">AMD</option>
+                            <option value="M1">M1</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Processor Name</label>
+                        <select name="processor_name" class="form-select" required>
+                            <option disabled selected>Select Processor</option>
+                            <option>Core i3</option>
+                            <option>Core i5</option>
+                            <option>Celeron Dual</option>
+                            <option>Ryzen 5</option>
+                            <option>Core i7</option>
+                            <option>Core i9</option>
+                            <option>M1</option>
+                            <option>Pentium Quad</option>
+                            <option>Ryzen 3</option>
+                            <option>Ryzen 7</option>
+                            <option>Ryzen 9</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Processor Generation</label>
+                        <select name="processor_gnrtn" class="form-select" required>
+                            <option disabled selected>Select Generation</option>
+                            <option>10th</option>
+                            <option>Not Available</option>
+                            <option>11th</option>
+                            <option>7th</option>
+                            <option>8th</option>
+                            <option>9th</option>
+                            <option>4th</option>
+                            <option>12th</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">RAM (GB)</label>
+                        <select name="ram_gb" class="form-select" required>
+                            <option>4 GB</option>
+                            <option>8 GB</option>
+                            <option>16 GB</option>
+                            <option>32 GB</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">RAM Type</label>
+                        <select name="ram_type" class="form-select" required>
+                            <option>DDR4</option>
+                            <option>LPDDR4</option>
+                            <option>LPDDR4X</option>
+                            <option>DDR5</option>
+                            <option>DDR3</option>
+                            <option>LPDDR3</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">SSD (GB)</label>
+                        <select name="ssd" class="form-select" required>
+                            <option>0 GB</option>
+                            <option>128 GB</option>
+                            <option>256 GB</option>
+                            <option>512 GB</option>
+                            <option>1024 GB</option>
+                            <option>2048 GB</option>
+                            <option>3072 GB</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">HDD (GB)</label>
+                        <select name="hdd" class="form-select" required>
+                            <option>0 GB</option>
+                            <option>512 GB</option>
+                            <option>1024 GB</option>
+                            <option>2048 GB</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Operating System</label>
+                        <select name="os" class="form-select" required>
+                            <option>Windows</option>
+                            <option>DOS</option>
+                            <option>Mac</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">OS Bit</label>
+                        <select name="os_bit" class="form-select" required>
+                            <option>64-bit</option>
+                            <option>32-bit</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Graphic Card (GB)</label>
+                        <select name="graphic_card_gb" class="form-select" required>
+                            <option>0 GB</option>
+                            <option>2 GB</option>
+                            <option>4 GB</option>
+                            <option>6 GB</option>
+                            <option>8 GB</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Warranty</label>
+                        <select name="warranty" class="form-select" required>
+                            <option>No warranty</option>
+                            <option>1 year</option>
+                            <option>2 years</option>
+                            <option>3 years</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Touchscreen</label>
+                        <select class="form-select" name="Touchscreen" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">MS Office</label>
+                        <select class="form-select" name="msoffice" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Rating</label>
+                        <select class="form-select" name="rating" required>
+                            <option>1 star</option>
+                            <option>2 stars</option>
+                            <option>3 stars</option>
+                            <option>4 stars</option>
+                            <option>5 stars</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">🔍 Predict Price</button>
+                </div>
+            </form>
+
+            {% if prediction %}
+            <div class="alert alert-success text-center mt-4">
+                <h4>Predicted Price: ₹{{ prediction }}</h4>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 Laptop Price Predictor
+    </footer>
+
+</body>
+
+</html>
